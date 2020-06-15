@@ -1,0 +1,69 @@
+﻿<Window x:Class="BooleanNetworkSupportTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BooleanNetworkSupportTool"
+        mc:Ignorable="d"
+        Title="Main" Height="659" Width="1009">
+
+    <Grid Margin="0,0,-6.333,-2.667">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1001*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu Margin="0,0,0.333,28">
+            <MenuItem Header="File">
+                <MenuItem Header="New" Click="clearGraph"/>
+                <MenuItem Header="Draw State Graph" Click="drawSynchronousGraph"/>
+                <MenuItem Header="Show Attractors" Click="showAttractors"/>
+                <MenuItem Header="Graph Clustering" Click="graphClusteringDialog"/>
+                <MenuItem Header="Show Asynchronous State Graph" Click="drawAsynchronousGraph"/>
+                <MenuItem Header="Import Boolean Network" Click="importGraph"/>
+                <MenuItem Header="Export Boolean Network" Click="exportGraph"/>
+                <Separator/>
+                <MenuItem Header="Exit" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="User Manual" Click="Open_UserManual"/>
+            </MenuItem>
+        </Menu>
+
+        <Label Content="Network Wiring Diagram" HorizontalAlignment="Left" Margin="159,29,0,0" VerticalAlignment="Top" Grid.RowSpan="4"/>
+        <Label Content="Output" HorizontalAlignment="Left" Margin="690,32,0,0" VerticalAlignment="Top" Grid.RowSpan="4"/>
+
+        <Border BorderBrush="#000000" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="32,10,0,0" Grid.Row="3" Height="374" Width="396">
+            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="3" VerticalAlignment="Top" Height="374" Width="396">
+                <Image Name="GraphViewer" Margin="0,0,0,0" Grid.Row="3" MouseWheel="UIElement_OnMouseWheel" />
+            </ScrollViewer>
+        </Border>
+
+        <TextBox x:Name="txtOutput"  HorizontalAlignment="Left" Height="374" Margin="466,10,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="502"/>
+        <ComboBox x:Name="cmbSelectVariable" SelectionChanged="ComboBox_SelectionChanged"  HorizontalAlignment="Right" Width="200" Height="22" Margin="0,0,171.333,106" Grid.Row="3" VerticalAlignment="Bottom"/>
+        <Label Margin="0,0,358.333,65" Grid.Row="3" HorizontalAlignment="Right" Width="75" Height="35" VerticalAlignment="Bottom">Function:</Label>
+        <TextBox x:Name="txtFunction" HorizontalAlignment="Right" Width="200" Height="22" Margin="0,0,171.333,74" Grid.Row="3" TextWrapping="Wrap" Text="Enter function here" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnAddVariable" Click="addVariable" Content="+" ToolTip="Click" Margin="0,0,120.333,106" Width="26" Height="26" FontSize="15" FontWeight="Bold" Grid.Row="3" RenderTransformOrigin="0.566,1.558" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnSaveFunction" Click="saveFunction" Content="Save" ToolTip="Click" Margin="0,0,120.333,73" Width="39" Grid.Row="3" RenderTransformOrigin="0.566,1.558" HorizontalAlignment="Right" Height="26" VerticalAlignment="Bottom"/>
+
+        <Separator Background="#000000" Height="12" Margin="0,404,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.Row="3" Grid.ColumnSpan="4"></Separator>
+
+        <Button x:Name="btnDraw" Click="drawSynchronousGraph" Content="Draw State Graph" ToolTip="Click" Margin="0,0,779.333,88" VerticalAlignment="Bottom" Width="190" Height="23" Grid.Row="3" RenderTransformOrigin="0.566,1.558" HorizontalAlignment="Right"/>
+        <Button x:Name="btnNewBooleanNetwork" Click="clearGraph" Content="New Boolean Network" ToolTip="Click" Margin="0,0,706.333,124" VerticalAlignment="Bottom" Width="129" Height="23" Grid.Row="3" RenderTransformOrigin="0.566,1.558" HorizontalAlignment="Right"/>
+        <Button x:Name="btnAttractors" Click="showAttractors" Content="Show Attractors" ToolTip="Click" Margin="0,0,779.333,60" VerticalAlignment="Bottom" Width="190" Height="23" Grid.Row="3" RenderTransformOrigin="0.566,1.558" HorizontalAlignment="Right"/>
+        <Button x:Name="btnImport" Click="importGraph" Content="Import Boolean Network" HorizontalAlignment="Right" Margin="0,0,573.333,60" Grid.Row="3" VerticalAlignment="Bottom" Width="190" Height="23"/>
+        <Button x:Name="btnExport" Click="exportGraph" Content="Export Boolean Network" HorizontalAlignment="Right" Margin="0,0,573.333,32" Grid.Row="3" VerticalAlignment="Bottom" Width="190" Height="23"/>
+        <Button x:Name="btnAsyncGraph" Click="drawAsynchronousGraph" Content="Show Asynchronous State Graph" ToolTip="Click" Margin="0,0,573.333,88" VerticalAlignment="Bottom" Width="190" Height="23" Grid.Row="3" RenderTransformOrigin="0.566,1.558" HorizontalAlignment="Right"/>
+        <Button x:Name="btnGraphClustering" Click="graphClusteringDialog" Content="Graph Clustering" ToolTip="Click" Margin="0,0,779.333,32" VerticalAlignment="Bottom" Width="190" Height="23" Grid.Row="3" RenderTransformOrigin="0.566,1.558" HorizontalAlignment="Right"/>
+        <Label Margin="0,0,376.333,96" Grid.Row="3" HorizontalAlignment="Right" Width="143" Height="35" VerticalAlignment="Bottom" Content="Select Boolean Variables:"/>
+        <Button x:Name="btnRemoveVariable" Click="removeVariable" Content="Remove" ToolTip="Click" Margin="0,0,52.333,106" Width="52" Grid.Row="3" RenderTransformOrigin="0.566,1.558" HorizontalAlignment="Right" Height="26" VerticalAlignment="Bottom"/>
+
+    </Grid>
+</Window>

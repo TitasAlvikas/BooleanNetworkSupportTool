@@ -1,0 +1,13 @@
+﻿<Window x:Class="BooleanNetworkSupportTool.UserManual"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BooleanNetworkSupportTool"
+        mc:Ignorable="d"
+        Title="User Manual" SizeToContent="Height" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="lblContent" Content="Content" HorizontalAlignment="Left" Margin="42,81,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblTitle" Content="User Manual" FontSize="26" Margin="320,21,319.333,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

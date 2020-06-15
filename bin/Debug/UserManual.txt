@@ -1,0 +1,5 @@
+To create state graph:
+-Add Boolean variables using '+' button
+-Select a Boolean variable from dropdown box
+-Enter in a Boolean function and click 'Save'
+-Click on 'Draw State Graph'
